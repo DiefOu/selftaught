@@ -1,10 +1,10 @@
 const initialState = {
-  item: {}
+  colors: {}
 }
 
 export default function (state = initialState, action) {
   return {
         ...state,
-        items: action.colors
+        colors: action.colors
       };
 }

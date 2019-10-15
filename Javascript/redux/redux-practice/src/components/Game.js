@@ -13,34 +13,30 @@ class Game extends Component {
       P4color: ''
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeP1 = this.onChangeP1.bind(this);
+    this.onChangeP2 = this.onChangeP2.bind(this);
+    this.onChangeP3 = this.onChangeP3.bind(this);
+    this.onChangeP4 = this.onChangeP4.bind(this);
   }
 
-  onChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  onChangeP1(e) {
+    this.props.onUpdateColor(this.state.P1color)
   }
-
-  onSubmit(e) {
-    e.preventDefault();
-
-    const colors = {
-      P1color: document.getElementsById("color1").value,
-      P2color: document.getElementsById("color2").value,
-      P3color: document.getElementsById("color3").value,
-      P4color: document.getElementsById("color4").value
-    }
-
-    this.props.updateColor(colors);
+  onChangeP2(e) {
+    this.props.onUpdateColor(this.state.P2color)
+  }
+  onChangeP3(e) {
+    this.props.onUpdateColor(this.state.P3color)
+  }
+  onChangeP4(e) {
+    this.props.onUpdateColor(this.state.P4color)
   }
 
   render() {
     return (
       <div>
-        <h1 id="p1">P1</h1>
-        <select id="color1">
+        <h1 className="p1">P1</h1>
+        <select id="color1" onChange={this.onChangeP1} value={this.state.P1color}>
           <option value="Red">Red</option>
           <option value="Orange">Orange</option>
           <option value="Yellow">Yellow</option>
@@ -50,8 +46,8 @@ class Game extends Component {
           <option value="Violet">Violet</option>
         </select>
 
-        <h1 id="p2">P2</h1>
-        <select id="color2">
+        <h1 className="p2">P2</h1>
+        <select id="color2" onChange={this.onChangeP2} value={this.state.P2color}>
           <option value="Red">Red</option>
           <option value="Orange">Orange</option>
           <option value="Yellow">Yellow</option>
@@ -61,8 +57,8 @@ class Game extends Component {
           <option value="Violet">Violet</option>
         </select>
 
-        <h1 id="p3">P3</h1>
-        <select id="color3">
+        <h1 className="p3">P3</h1>
+        <select id="color3" onChange={this.onChangeP3} value={this.state.P3color}>
           <option value="Red">Red</option>
           <option value="Orange">Orange</option>
           <option value="Yellow">Yellow</option>
@@ -72,8 +68,8 @@ class Game extends Component {
           <option value="Violet">Violet</option>
         </select>
 
-        <h1 id="p4">P4</h1>
-        <select id="color4">
+        <h1 className="p4">P4</h1>
+        <select id="color4" onChange={this.onChangeP4} value={this.state.P4color}>
           <option value="Red">Red</option>
           <option value="Orange">Orange</option>
           <option value="Yellow">Yellow</option>
@@ -88,7 +84,21 @@ class Game extends Component {
 }
 
 Game.propTypes = {
-  updateColor: PropTypes.func.isRequired
+  updateColor: PropTypes.func.isRequired,
+  colors: PropTypes.object
 };
 
-export default connect(null, { updateColor })(Game);
+const mapStateToProps = state => ({
+  P1color: state.colors.P1color,
+  P2color: state.colors.P2color,
+  P3color: state.colors.P3color,
+  P4color: state.colors.P4color,
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onUpdateColor: (colors) => dispatch(updateColor(colors))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game);
