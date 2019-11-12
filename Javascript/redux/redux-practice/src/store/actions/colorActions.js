@@ -1,5 +1,9 @@
-export const updateColor = (colors) => dispatch => {
+import * as actionType from "./actionTypes.js";
+
+export const updateColor = (player, color) => {
   return {
-    colors: colors
-  }
+    type: actionType.UPDATE,
+    player: player,
+    color: color
+  };
 };
