@@ -19,3 +19,14 @@ print([token.text for token in tokens2]) # prints stuff as objective for loop
 # Sentence tokenization using nltk
 from nltk.tokenize import sent_tokenize
 print(sent_tokenize(sent)) # prints sentence-tokenized list
+
+# PoS tagging
+import nltk
+tokens = word_tokenize(sent) # stores unigram tokenized list into a variable
+print(nltk.pos_tag(tokens)) # applies pos tagging to tokens using an existing model
+nltk.help.upenn_tagset('PRP') # convieniently has a help function to print out what the tags mean
+nltk.help.upenn_tagset('VBP')
+# spaCy already has a list with PoS tags when tokenizing
+print([(token.text, token.pos_) for token in tokens2])
+
+# Named-entity recognition
