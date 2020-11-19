@@ -30,3 +30,9 @@ nltk.help.upenn_tagset('VBP')
 print([(token.text, token.pos_) for token in tokens2])
 
 # Named-entity recognition
+# using spaCy to obtain entity data from a given tokenized sentence
+tokens3 = nlp('The book written by Hayden Liu in 2018 was sold at $30 in America') # sentence tokenized and stored
+# these tokens have an attribute called ents which contain such data
+print([(token_ent.text, token_ent.label_) for token_ent in tokens3.ents])
+
+# Stemming and lemmatization
