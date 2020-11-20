@@ -36,3 +36,12 @@ tokens3 = nlp('The book written by Hayden Liu in 2018 was sold at $30 in America
 print([(token_ent.text, token_ent.label_) for token_ent in tokens3.ents])
 
 # Stemming and lemmatization
+# stemming is when you find the "root word" of a word. lemmatization is a form of stemming that considers PoS
+from nltk.stem.porter import PorterStemmer
+porter_stemmer = PorterStemmer() # import and initialize the stemmer
+porter_stemmer.stem('machines') # returns 'machin'
+porter_stemmer.stem('learning') # returns 'learn'
+from nltk.stem import WordNetLemmatizer
+lemmatizer = WordNetLemmatizer() # import and initialize the lemmatizer
+lemmatizer.lemmatize('machines') # returns 'machine'
+lemmatizer.lemmatize('learning') # returns 'learning'. Algorithm only lemmatizes on nouns by default
