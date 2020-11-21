@@ -13,3 +13,7 @@ import seaborn as sns # used to compute the histogram of categories
 sns.distplot(groups.target)
 import matplotlib.pyplot as plt
 plt.show()
+# show an example text in dataset
+groups.data[0] # returns the first document (if a seed was set then the first one would be different)
+groups.target[0] # returns the newsgroup of first document
+groups.target_names[groups.target[0]] # returns the name of the newsgroup given the encoded number
